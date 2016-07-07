@@ -12,12 +12,12 @@ class FullyConnectedLayer extends Layer{
    * @param n number of neurons
    * @param prevLayer previous layer
    */
-  construct(n : int, prevLayer : Layer, first : boolean, last : boolean){
-    _first = first
+  construct(n : int, prevLayer : Layer, last : boolean){
+    _first = false
     _last = last
     _neurons = new Neuron[n]
     for(i in 0..|n){
-      _neurons[i] = new SigmoidNeuron(prevLayer.Neurons) //should be generic
+      _neurons[i] = new SigmoidNeuron(prevLayer.Neurons) //sends all neurons from the previous layer as input
     }
   }
 
@@ -25,12 +25,12 @@ class FullyConnectedLayer extends Layer{
    * First layer
    * @param n number of neurons
    */
-  construct(n : int, first : boolean, last : boolean){
-    _first = first
-    _last = last
+  construct(n : int){
+    _first = true
+    _last = false //There cannot be a network with only one layer
     _neurons = new Neuron[n]
     for(i in 0..|n){
-      _neurons[i] = new SigmoidNeuron() //should be generic
+      _neurons[i] = new SigmoidNeuron()
     }
   }
 }

@@ -7,8 +7,8 @@ uses neural.neuron.Neuron
  */
 abstract class Layer {
   protected var _neurons : Neuron[] as readonly Neurons
-  protected var _last : boolean = false
-  protected var _first : boolean = false
+  protected var _last : boolean
+  protected var _first : boolean
 
   /**
    * Used to initialize deltas from the last layer

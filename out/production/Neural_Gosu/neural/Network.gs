@@ -20,9 +20,9 @@ class Network {
   construct(net : int[], epochs : int, eta : double, lmbda : double, minbatch_len : int, t_data : Data[]){
     _nLayers = net.length
     _layers = new Layer[_nLayers]
-    _layers[0] = new FullyConnectedLayer(net[0], true, net.length == 0)
+    _layers[0] = new FullyConnectedLayer(net[0])
     for(i in 1..|net.length){
-      _layers[i] = new FullyConnectedLayer(net[i], _layers[i-1], false, i == net.length - 1)
+      _layers[i] = new FullyConnectedLayer(net[i], _layers[i-1], i == net.length - 1)
     }
     _epochs = epochs
     _eta = eta
