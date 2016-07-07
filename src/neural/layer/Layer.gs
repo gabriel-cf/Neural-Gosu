@@ -51,13 +51,9 @@ abstract class Layer {
   }
 
   /**
-   * @param inputs array of activations used to feed the layer
-   * @return output array with activation values
+   * Activates neurons from this layer
+   * @return activation values if it is the last layer, null otherwise
    */
-  private function setInputsForFeedForward(inputs: double[]) {
-
-  }
-
   function feedForward() : double[]{
     var outputs : double[] = null
     if(_last)
@@ -72,8 +68,8 @@ abstract class Layer {
   }
 
   /**
-   *
-   * @return output values if it is the last layer, null otherwise
+   * Takes the input and sets it to feed the network.
+   * Can only be used by the first layer.
    */
   function feedForward(inputs: double[]){
     for (neuron in _neurons index i) {
@@ -83,19 +79,6 @@ abstract class Layer {
       neuron.Z = inputs[i]
       neuron.Activation = inputs[i]
     }
-  }
-
-  function getOutput() : double[]{
-    if(! _last)
-      throw new RuntimeException("Output can only be retrieved from last layer")
-
-    var outputs = new double[_neurons.length];
-    for (neuron in _neurons index i) {
-      outputs[i] = neuron.Activation
-    }
-
-    return outputs
-
   }
 
   /**
