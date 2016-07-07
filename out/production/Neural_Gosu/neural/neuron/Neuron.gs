@@ -106,10 +106,17 @@ abstract class Neuron {
     }
   }
 
+  function activate() : double{
+    resetDeltas()
+    _z = calculateZ()
+    _activation = activation_function()
+    return _activation
+  }
+
   /**
    * Prepares deltas for a new feedforward with backpropagation
    */
-  function resetDeltas(){
+  private function resetDeltas(){
     for (w in _weights)
       w._delta = 0
     _bias._delta = 0
@@ -190,17 +197,16 @@ abstract class Neuron {
 
   /**
    * Calculates the Z value as the sum of products of weights and activations plus bias
-   * @param inputs activations from the early layer linked to this neuron
-   * @return updated Z value
+   * @return calculated z value
    */
-  function calculateZ(inputs : double[]) : double {
-    _z = 0.0;
-    for (x in inputs index j) {
-      _z += x * _weights[j].Weight;
+  private function calculateZ() : double {
+    var z = 0.0;
+    for (w in _weights) {
+      z += w.N.Activation * w.Weight;
     }
-    _z += _bias.Bias;
+    z += _bias.Bias;
 
-    return _z;
+    return z;
   }
 
   override function toString():String{

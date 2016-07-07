@@ -51,23 +51,34 @@ abstract class Layer {
   }
 
   /**
-   * @param inputs array of activations used to feed the layer
-   * @return output array with activation values
+   * Activates neurons from this layer
+   * @return activation values if it is the last layer, null otherwise
    */
-  function feedForward(inputs: double[]) : double[] {
-    var outputs = new double[_neurons.length];
+  function feedForward() : double[]{
+    var outputs : double[] = null
+    if(_last)
+      outputs = new double[_neurons.length];
+    var x : double
     for (neuron in _neurons index i) {
-      neuron.resetDeltas() //sets deltas to 0 for backpropagation
-      if(_first) { //Neurons from the first layer, by convention, do not operate over the input
-        neuron.Z = inputs[i]
-        neuron.Activation = inputs[i]
-        outputs[i] = inputs[i]
-      }else {
-        neuron.calculateZ(inputs) //loads _z attribute
-        outputs[i] = neuron.activation_function() //loads _activation attribute and retrieves it
-      }
+      x = neuron.activate()
+      if(_last)
+        outputs[i] = x
     }
-    return outputs;
+    return outputs
+  }
+
+  /**
+   * Takes the input and sets it to feed the network.
+   * Can only be used by the first layer.
+   */
+  function feedForward(inputs: double[]){
+    for (neuron in _neurons index i) {
+      if(! _first)
+        throw new RuntimeException("Only first layer con have their inputs set")
+
+      neuron.Z = inputs[i]
+      neuron.Activation = inputs[i]
+    }
   }
 
   /**

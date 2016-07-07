@@ -24,8 +24,7 @@ class SigmoidNeuron extends Neuron{
    * @return activation value
    */
   override function activation_function(z : double): double {
-    _activation = 1.0/(1.0 + Math.exp(-z))
-    return _activation
+    return 1.0/(1.0 + Math.exp(-z))
   }
 
   override function activation_function() : double{

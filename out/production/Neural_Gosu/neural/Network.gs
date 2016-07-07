@@ -70,8 +70,9 @@ class Network {
   }
 
   function feedforward(x : double[]) : double[]{
-    for(i in 0..|_nLayers){
-      x = _layers[i].feedForward(x) //propagate the input through the network and retrieve the final output
+    _layers[0].feedForward(x)
+    for(i in 1..|_nLayers){
+      x = _layers[i].feedForward() //propagate the input through the network and retrieve the final output
     }
     return x
   }

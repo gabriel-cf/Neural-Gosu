@@ -12,13 +12,13 @@ uses neural.*
      * Logic Gate AND
      */
     function AND(){
-      var n_outputs = 2 // size of the output vector
-      var net = new int[]{2,n_outputs}
+      var m = 2 // size of the output vector
+      var net = new int[]{2,m}
       var epochs = 500
       var eta = 1.0
       var lmbda = 0.0
       var minbatch_len = 2
-      var t_data = new Data[]{new Data({1.0,1.0}, 1, n_outputs), new Data({1.0,0.0}, 0, n_outputs), new Data({0.0,1.0}, 0, n_outputs), new Data({0.0,0.0}, 0, n_outputs)}
+      var t_data = new Data[]{new Data({1.0,1.0}, 1, m), new Data({1.0,0.0}, 0, m), new Data({0.0,1.0}, 0, m), new Data({0.0,0.0}, 0, m)}
       var network = new Network(net, epochs, eta, lmbda, minbatch_len, t_data)
 
       network.SGD()
@@ -33,13 +33,13 @@ uses neural.*
      * Logic Gate OR
      */
     function OR(){
-      var n_outputs = 2 // size of the output vector
-      var net = new int[]{2,n_outputs}
+      var m = 2 // size of the output vector
+      var net = new int[]{2,m}
       var epochs = 500
       var eta = 1.0
       var lmbda = 0.0
       var minbatch_len = 2
-      var t_data = new Data[]{new Data({1.0,1.0}, 1, n_outputs), new Data({1.0,0.0}, 1, n_outputs), new Data({0.0,1.0}, 1, n_outputs), new Data({0.0,0.0}, 0, n_outputs)}
+      var t_data = new Data[]{new Data({1.0,1.0}, 1, m), new Data({1.0,0.0}, 1, m), new Data({0.0,1.0}, 1, m), new Data({0.0,0.0}, 0, m)}
       var network = new Network(net, epochs, eta, lmbda, minbatch_len, t_data)
 
       network.SGD()
@@ -54,13 +54,13 @@ uses neural.*
      * Logic Gate XOR
      */
     function XOR(){
-      var n_outputs = 2 // size of the output vector
-      var net = new int[]{2,10,n_outputs}
+      var m = 2 // size of the output vector
+      var net = new int[]{2,10,m}
       var epochs = 500
       var eta = 1.0
       var lmbda = 0.0
       var minbatch_len = 2
-      var t_data = new Data[]{new Data({1.0,1.0}, 0, n_outputs), new Data({1.0,0.0}, 1, n_outputs), new Data({0.0,1.0}, 1, n_outputs), new Data({0.0,0.0}, 0, n_outputs)}
+      var t_data = new Data[]{new Data({1.0,1.0}, 0, m), new Data({1.0,0.0}, 1, m), new Data({0.0,1.0}, 1, m), new Data({0.0,0.0}, 0, m)}
       var network = new Network(net, epochs, eta, lmbda, minbatch_len, t_data)
 
       network.SGD()
@@ -75,13 +75,13 @@ uses neural.*
      * Logic Gate NAND
      */
     function NAND(){
-      var n_outputs = 2 // size of the output vector
-      var net = new int[]{2,50,n_outputs}
+      var m = 2 // size of the output vector
+      var net = new int[]{2,50,m}
       var epochs = 500
       var eta = 1.0
       var lmbda = 0.0
       var minbatch_len = 2
-      var t_data = new Data[]{new Data({1.0,1.0}, 0, n_outputs), new Data({1.0,0.0}, 1, n_outputs), new Data({0.0,1.0}, 1, n_outputs), new Data({0.0,0.0}, 1, n_outputs)}
+      var t_data = new Data[]{new Data({1.0,1.0}, 0, m), new Data({1.0,0.0}, 1, m), new Data({0.0,1.0}, 1, m), new Data({0.0,0.0}, 1, m)}
       var network = new Network(net, epochs, eta, lmbda, minbatch_len, t_data)
 
       network.SGD()
